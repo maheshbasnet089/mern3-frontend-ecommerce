@@ -4,13 +4,13 @@ import axios from "axios";
 import { AppDispatch } from "./store";
 
 
-interface ILoginUser{
+interface ILoginsdfsdfsdfUser{
     email : string, 
     password : string
 }
 
 interface IUser{
-    username : string | null, 
+    username :sdfdsf string | null, 
     email : string | null 
     password : string | null
 }
@@ -85,7 +85,6 @@ function forgotPassword(data:{email : string}){
     return async function forgotPasswordThunk(dispatch:AppDispatch){
         try {
             const response = await axios.post("http://localhost:3000/api/auth/forgot-password",data)
-            console.log(response)
             if(response.status === 200){
                 dispatch(setStatus(Status.SUCCESS))
             }else{
