@@ -4,13 +4,13 @@ import { AppDispatch } from "./store";
 import API from "../http";
 
 
-interface ILoginsdfsdfsdfUser{
+interface ILoginUser{
     email : string, 
     password : string
 }
 
 interface IUser{
-    username :sdfdsf string | null, 
+    username : string | null, 
     email : string | null 
     password : string | null
 }
