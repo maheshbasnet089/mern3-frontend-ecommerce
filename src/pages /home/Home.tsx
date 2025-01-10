@@ -1,55 +1,24 @@
 import { Link } from "react-router-dom"
+import Navbar from "../../globals/components/Navbar"
 
 
 function Home(){
     return (
 
 <div>
-  <header className="sticky top-0 bg-white shadow">
-    <div className="container flex flex-col sm:flex-row justify-between items-center mx-auto py-4 px-8">
-      <div className="flex items-center text-2xl">
-        <div className="w-12 mr-3">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-            <path fill="#BEE3F8" d="M44,7L4,23l40,16l-7-16L44,7z M36,23H17l18-7l1,6V23z" />
-            <path fill="#3182CE" d="M40.212,10.669l-5.044,11.529L34.817,23l0.351,0.802l5.044,11.529L9.385,23L40.212,10.669 M44,7L4,23 l40,16l-7-16L44,7L44,7z">
-            </path>
-            <path  fill="#3182CE" d="M36,22l-1-6l-18,7l17,7l-2-5l-8-2h12V22z M27.661,21l5.771-2.244L33.806,21H27.661z">
-            </path>
-          </svg>
-        </div>Lander
-      </div>
-      <div className="flex mt-4 sm:mt-0">
-        <a className="px-4" href="#features">Features</a>
-        <a className="px-4" href="#services">Services</a>
-        <a className="px-4" href="#stats">Stats</a>
-        <a className="px-4" href="#testimonials">Testimonials</a>
-      </div>
-      
-      <div className="hidden md:block">
-   <Link to='/register'>
-   <button type="button" className="mr-5 py-3 px-8 text-sm bg-teal-500 hover:bg-teal-600 rounded text-white ">Register
-        </button>
-   </Link>
-   <Link to='/login'>
-   <button type="button" className=" py-3 px-8 text-sm bg-teal-500 hover:bg-teal-600 rounded text-white ">Login
-        </button>
-   </Link>
-      </div>
-    </div>
-  </header>
+<Navbar />
   <main className="text-gray-900">
     <section className="pt-20 md:pt-40">
       <div className="container mx-auto px-8 lg:flex">
         <div className="text-center lg:text-left lg:w-1/2">
-          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-none">Main title of your
-            landing page</h1>
-          <p className="text-xl lg:text-2xl mt-6 font-light">Free landing page template to promote your
-            business startup and generate leads for the offered services
+          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-none">Hamro Dokaan...</h1>
+          <p className="text-xl lg:text-2xl mt-6 font-light">Visit our store to buy your
+            any household materials, products..
           </p>
           <p className="mt-8 md:mt-12">
             <button type="button" className=" py-4 px-12 bg-teal-500 hover:bg-teal-600 rounded text-white">Get Started</button>
           </p>
-          <p className="mt-4 text-gray-600">Sed fermentum felis ut cursu
+          <p className="mt-4 text-gray-600">We provide quality products.
           </p>
         </div>
         <div className="lg:w-1/2">
