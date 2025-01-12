@@ -31,6 +31,7 @@ function Navbar(){
         </div>HDokaan..
       </div>
       <div className="flex mt-4 sm:mt-0">
+        <Link className="px-4" to="/products">Products</Link>
         <a className="px-4" href="#features">Features</a>
         <a className="px-4" href="#services">Services</a>
         <a className="px-4" href="#stats">Stats</a>
