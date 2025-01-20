@@ -2,7 +2,7 @@ import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 import { ICartInitialState, ICartItem } from "../pages /cart/types";
 import { Status } from "../globals/types/type";
 import { AppDispatch } from "./store";
-import API from "../http";
+import  { APIWITHTOKEN } from "../http";
 
 
 const initialState:ICartInitialState = {
@@ -24,12 +24,39 @@ const cartSlice = createSlice({
 export const {setItems,setStatus} = cartSlice.actions
 export default cartSlice.reducer
 
-function addToCart(){
+export function addToCart(productId:string){
     return async function addToCartThunk(dispatch:AppDispatch){
         try {
-            const response = await APIWITH.post("/cart")
+            const response = await APIWITHTOKEN.post("/cart",{
+                productId : productId, 
+                quantity : 1
+            })
+            if(response.status === 200){
+                dispatch(setStatus(Status.SUCCESS))
+                dispatch(setItems(response.data.data))
+            }else{
+                dispatch(setStatus(Status.ERROR))
+            }
         } catch (error) {
-            
+            console.log(error)
+            dispatch(setStatus(Status.ERROR))
+        }
+    }
+}
+
+export function fetchCartItems(){
+    return async function fetchCartItemsThunk(dispatch:AppDispatch){
+        try {
+            const response = await APIWITHTOKEN.get("/cart")
+            if(response.status === 200){
+                dispatch(setItems(response.data.data))
+                dispatch(setStatus(Status.SUCCESS))
+            }else{
+                dispatch(setStatus(Status.ERROR))
+            }
+        } catch (error) {
+            console.log(error)
+            dispatch(setStatus(Status.ERROR))
         }
     }
 }

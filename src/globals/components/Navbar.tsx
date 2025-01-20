@@ -1,19 +1,24 @@
 import { Link } from "react-router-dom"
-import { useAppSelector } from "../../store/hooks"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { useEffect, useState } from "react"
+import { fetchCartItems } from "../../store/cartSlice"
 
 
 function Navbar(){
     const reduxToken = useAppSelector((store)=>store.auth.user.token)
     const localStorageToken = localStorage.getItem("tokenHoYo")
     const [isLoggedIn,setIsLoggedIn] = useState<boolean>(false)
+    const dispatch = useAppDispatch()
 
     useEffect(()=>{
         setIsLoggedIn(!!localStorageToken || !!reduxToken)
+        if(isLoggedIn){
+          dispatch(fetchCartItems())
+        }
         // if(reduxToken && localStorageToken){
         //     setIsLoggedIn(true)
         // }
-    },[])
+    },[isLoggedIn])
     console.log(isLoggedIn)
 
  return ( 
