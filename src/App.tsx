@@ -9,6 +9,7 @@ import Login from './pages /user/Login'
 import Product from './pages /product/Product'
 import SingleProduct from './pages /single-product/SingleProduct'
 import MyCart from './pages /cart/my-cart'
+import Checkout from './pages /checkout/Checkout'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
     <Route path='/products' element={<Product />}/>
     <Route path='/products/:id' element={<SingleProduct />}/>
     <Route path="/my-cart" element={<MyCart />} />
+    <Route path="/my-checkout" element={<Checkout />} />
     
     </Routes>
     </BrowserRouter>
