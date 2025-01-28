@@ -36,8 +36,10 @@ export function orderItem(data:IData){
            if(response.status === 200){
             dispatch(setStatus(Status.SUCCESS))
             dispatch(setItems(response.data.data))
+            console.log(response.data.url, "URL")
             if(response.data.url){
                 setKhaltiUrl(response.data.url)
+                window.location.href = response.data.url
             }
            }else{
             dispatch(setStatus(Status.ERROR))
