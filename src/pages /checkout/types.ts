@@ -1,4 +1,5 @@
 import { Status } from "../../globals/types/type";
+import { IOrderDetail } from "../my-orders-details/types";
 
 interface IProduct{
     productId : string, 
@@ -17,7 +18,8 @@ export interface IOrderItems extends IProduct{
 export interface IOrder{
     status : Status, 
     items : IOrderItems[], 
-    khaltiUrl : string | null 
+    khaltiUrl : string | null , 
+    orderDetails : IOrderDetail[]
 
 }
 
