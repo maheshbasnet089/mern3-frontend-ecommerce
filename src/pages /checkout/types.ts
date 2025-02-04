@@ -12,7 +12,8 @@ interface IProduct{
     }
 }
 export interface IOrderItems extends IProduct{
-    id : string
+    id : string, 
+    orderId : string
 }
 
 export interface IOrder{
