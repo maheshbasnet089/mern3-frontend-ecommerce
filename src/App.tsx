@@ -16,6 +16,7 @@ import AdminIndex from './pages /admin/AdminLayout'
 import Categories from './pages /admin/categories/Categories'
 import AdminLayout from './pages /admin/AdminLayout'
 import AdminStats from './pages /admin/stats/AdminStats'
+import User from './pages /admin/users/Users'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
     <Route path="/my-orders/:id" element={<MyOrderDetail />} />
     <Route path='/admin' element={<AdminStats />} />
     <Route path='/admin/categories' element={<Categories />} />
+    <Route path='/admin/users' element={<User />} />
     </Routes>
     </BrowserRouter>
   </Provider>

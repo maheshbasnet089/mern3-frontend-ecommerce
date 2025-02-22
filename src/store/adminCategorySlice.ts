@@ -24,6 +24,9 @@ const categorySlice = createSlice({
         setItems(state:ICategoryInitialState,action:PayloadAction<ICategory[]>){
             state.items = action.payload
         }, 
+        addCategoryToItems(state:ICategoryInitialState,action:PayloadAction<ICategory>){
+            state.items.push(action.payload)
+        },
         setStatus(state:ICategoryInitialState,action:PayloadAction<Status>){
             state.status = action.payload
         }, 
@@ -32,10 +35,13 @@ const categorySlice = createSlice({
             if(index !== -1){
             state.items.splice(index,1)
             }
+        }, 
+        resetStatus(state:ICategoryInitialState){
+            state.status = Status.LOADING ; 
         }
     }
 })
-export const {setItems,setStatus,setDeleteCategoryItem} = categorySlice.actions
+export const {setItems,setStatus,setDeleteCategoryItem,addCategoryToItems, resetStatus} = categorySlice.actions
 export default categorySlice.reducer
 
 export function addCategory(categoryName:string){
@@ -44,7 +50,7 @@ export function addCategory(categoryName:string){
             const response = await APIWITHTOKEN.post("/category",{categoryName})
             if(response.status === 200){
                 dispatch(setStatus(Status.SUCCESS))
-                dispatch(setItems(response.data.data))
+                dispatch(addCategoryToItems(response.data.data))
             }else{
                 dispatch(setStatus(Status.ERROR))
             }
