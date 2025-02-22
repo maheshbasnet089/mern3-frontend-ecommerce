@@ -1,8 +1,9 @@
 import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 import { Status } from "../globals/types/type";
-import { AppDispatch } from "./store";
-import { APIWITHTOKEN } from "../http";
+import { AppDispatch, RootState } from "./store";
+import { API, APIWITHTOKEN } from "../http";
 import { IProduct } from "../pages /admin/products/components/ProductModal";
+import { IProducts } from "../pages /product/types";
 
 
 export interface IProductAdmin{
@@ -23,11 +24,13 @@ export interface IProductAdmin{
 
 interface IInitialState{
     products : IProductAdmin[], 
-    status : Status
+    status : Status, 
+    product : null | IProductAdmin
 }
 const initialState:IInitialState = {
     products : [], 
-    status : Status.LOADING
+    status : Status.LOADING, 
+    product : null
 }
 
 const productSlice = createSlice({
@@ -43,10 +46,13 @@ const productSlice = createSlice({
         addProductToProducts(state:IInitialState,action:PayloadAction<IProductAdmin>){
             state.products.push(action.payload)
         }, 
+        setProduct(state:IInitialState,action:PayloadAction<IProductAdmin>){
+            state.product = action.payload
+        }, 
     }
 })
 
-export const {setStatus,setProducts,addProductToProducts} = productSlice.actions
+export const {setStatus,setProducts,addProductToProducts,setProduct} = productSlice.actions
 export default productSlice.reducer 
 
 export function fetchProducts(){
@@ -81,5 +87,30 @@ export function addProduct(data :IProduct){
       } catch (error) {
         dispatch(setStatus(Status.ERROR))
       }
+    }
+}
+
+export function fetchProductAdmin(id:string){
+    return async function fetchProductAdminThunk(dispatch:AppDispatch,getState:()=>RootState){
+        const store = getState()
+        const productExists = store.adminProducts.products.find((product:IProductAdmin)=>product.id == id) 
+     
+        if(productExists){
+            dispatch(setProduct(productExists))
+            dispatch(setStatus(Status.SUCCESS))
+        }else{
+            try {
+                const response = await API.get("/product/" + id)
+                if(response.status === 200){
+                    dispatch(setStatus(Status.SUCCESS))
+                    dispatch(setProduct( response.data.data))
+                }else{
+                    dispatch(setStatus(Status.ERROR))
+                }
+            } catch (error) {
+                console.log(error)
+                dispatch(setStatus(Status.ERROR))
+            }
+        }
     }
 }
