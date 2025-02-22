@@ -32,6 +32,7 @@ export interface IOrderDetail {
         phoneNumber: string,
         firstName : string, 
         lastName : string, 
+        userId : string,
         Payment: {
             paymentMethod: PaymentMethod,
             paymentStatus: PaymentStatus
